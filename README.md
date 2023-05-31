@@ -1,2 +1,2 @@
-# BusinessCards
- Business Cards Site
+# bcard-typescript-demo
+ 
