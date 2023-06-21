@@ -34,7 +34,8 @@ const Menu: React.FC<Props> = ({ isOpen, anchorEl, onClose }) => {
       transformOrigin={{
         vertical: "top",
         horizontal: "right",
-      }}>
+      }}
+    >
       <Box>
         <MenuLink
           label="about"
@@ -62,7 +63,11 @@ const Menu: React.FC<Props> = ({ isOpen, anchorEl, onClose }) => {
         {user && (
           <>
             <MenuLink label="profile" navigateTo={"/"} onClick={onClose} />
-            <MenuLink label="edit account" navigateTo={"/"} onClick={onClose} />
+            <MenuLink
+              label="edit account"
+              navigateTo={`${ROUTES.EDIT_USER}/${user?._id}`}
+              onClick={onClose}
+            />
 
             <MenuItem onClick={onLogout}>Logout</MenuItem>
           </>

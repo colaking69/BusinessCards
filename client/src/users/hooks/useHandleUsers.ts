@@ -10,7 +10,7 @@ import { useUser } from "../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "./../../routes/routesModel";
 import { Login, RegistrationForm, TokenType } from "../models/types/userType";
-import normalizeUser from "../helpers/normalization/normalizeUser";
+import { normalizeUser } from "../helpers/normalization/normalizeUser";
 
 const useHandleUsers = () => {
   const [error, setError] = useState<null | string>(null);

@@ -25,7 +25,7 @@ export type UserFromClientType = {
 };
 
 export type UserMapToModelType = {
-  _id: string;
+  _id?: string;
   first: string;
   middle: string;
   last: string;
@@ -43,28 +43,54 @@ export type UserMapToModelType = {
   isBusiness: boolean;
 };
 
+// export type NormalizedEditUser = {
+//   _id?: string | undefined;
+//   name: {
+//     first: "string";
+//     middle: "string";
+//     last: "string";
+//   };
+//   phone: "string";
+//   email: "string";
+//   password: "string";
+//   image: {
+//     url: "string";
+//     alt: "string";
+//   };
+//   address: {
+//     state: "string";
+//     country: "string";
+//     city: "string";
+//     street: "string";
+//     house: "string";
+//     zip: "number";
+//   };
+//   isBusiness: "string";
+// };
+
 export type NormalizedEditUser = {
+  _id: string;
   name: {
-    first: "string";
-    middle: "string";
-    last: "string";
+    first: string;
+    middle: string;
+    last: string;
   };
-  phone: "string";
-  email: "string";
-  password: "string";
+  phone: string;
+  email: string;
+  password: string;
   image: {
-    url: "string";
-    alt: "string";
+    url: string;
+    alt: string;
   };
   address: {
-    state: "string";
-    country: "string";
-    city: "string";
-    street: "string";
-    house: "string";
-    zip: "number";
+    state: string;
+    country: string;
+    city: string;
+    street: string;
+    houseNumber: number;
+    zip: number;
   };
-  isBusiness: "string";
+  isBusiness: boolean;
 };
 
 export type CreateUserErrors = Partial<UserFromClientType>;
