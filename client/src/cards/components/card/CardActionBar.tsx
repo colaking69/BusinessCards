@@ -16,6 +16,7 @@ type CardActionBarProps = {
   cardId: string;
   cardUserId: string;
   onDelete: (id: string) => void;
+  onLike: () => void;
 };
 
 const CardActionBar = ({
@@ -23,19 +24,22 @@ const CardActionBar = ({
   cardId,
   cardUserId,
   onDelete,
+  onLike,
 }: CardActionBarProps) => {
   const [isDialogOpen, setDialog] = useState(false);
-  const [hasUserLiked, setHasUserLiked] = useState(false);
-  const navigate = useNavigate();
   const { user } = useUser();
+  const [hasUserLiked, setHasUserLiked] = useState(
+    user && likes?.includes(user?._id)
+  );
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user && likes?.includes(user?._id)) {
-      setHasUserLiked(true);
-    } else {
-      setHasUserLiked(false);
-    }
-  }, [user, likes, cardUserId]);
+  // useEffect(() => {
+  //   if (user && likes?.includes(user?._id)) {
+  //     setHasUserLiked(true);
+  //   } else {
+  //     setHasUserLiked(false);
+  //   }
+  // }, [user, likes, cardUserId]);
 
   const handleDialog = (term?: string) => {
     if (term === "open") return setDialog(true);
@@ -56,6 +60,7 @@ const CardActionBar = ({
         resultsOfLike = await addFavCard(cardId, user?._id);
       }
       resultsOfLike && setHasUserLiked(!hasUserLiked);
+      onLike();
     }
   };
 

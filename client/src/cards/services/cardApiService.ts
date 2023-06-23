@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import CardInterface from "../models/interfaces/CardInterface";
 import { NormalizedEditCard } from "../models/types/cardTypes";
-import { useUser } from "../../users/providers/UserProvider";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:8181";
 
@@ -94,7 +93,9 @@ export const addFavCard = async (cardId: string, userId: string) => {
         $push: { likes: userId },
       }
     );
-    console.log(response.data); // Optional: Handle the response as needed
+
+    // console.log(response.data);
+    // Optional: Handle the response as needed
     return true;
   } catch (error) {
     console.error(error);
@@ -110,7 +111,9 @@ export const removeFavCard = async (cardId: string, userId: string) => {
         $pull: { likes: userId },
       }
     );
-    console.log(response.data); // Optional: Handle the response as needed
+
+    // console.log(response.data);
+    // Optional: Handle the response as needed
     return true;
   } catch (error) {
     console.error(error);

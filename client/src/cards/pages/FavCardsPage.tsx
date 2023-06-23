@@ -7,7 +7,6 @@ import CardsFeedback from "../components/CardsFeedback";
 import PageHeader from "../../components/PageHeader";
 import useCards from "../hooks/useCards";
 import useSearch from "../hooks/useSearch";
-
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -20,9 +19,10 @@ const FavCardsPage = () => {
   const { user } = useUser();
   const { value, handleGetCards, handleDeleteCard, handleGetFavCard } =
     useCards();
-  const { cards, error, isLoading } = value;
+  const { cards, error, isLoading, setCards } = value;
 
-  const { filteredCards, handleSearch, searchQuery } = useSearch("favCards");
+  const { filteredCards, handleSearch, searchQuery, filterCards } =
+    useSearch("favCards");
 
   // useEffect(() => {
   //   user && handleGetFavCard(user?._id);
@@ -31,6 +31,11 @@ const FavCardsPage = () => {
   const onDeleteCard = async (cardId: string) => {
     await handleDeleteCard(cardId);
     user && (await handleGetFavCard(user?._id));
+  };
+
+  const onLikedCard = async () => {
+    // user && (await handleGetFavCard(user?._id));
+    filterCards();
   };
 
   if (!user) return <Navigate replace to={ROUTES.ROOT} />;
@@ -70,6 +75,7 @@ const FavCardsPage = () => {
         error={error}
         isLoading={isLoading}
         onDelete={onDeleteCard}
+        onLike={() => onLikedCard()}
       />
     </Container>
   );

@@ -30,7 +30,7 @@ const EditCardPage = () => {
 
   useEffect(() => {
     if (cardId)
-      handleGetCard(cardId).then(cardFromServer => {
+      handleGetCard(cardId).then((cardFromServer) => {
         if (user?._id !== cardFromServer!.user_id) return navigate(ROUTES.ROOT);
         const modeledCard = mapCardToModel(cardFromServer!);
         setData(modeledCard);
@@ -46,7 +46,8 @@ const EditCardPage = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-      }}>
+      }}
+    >
       <CardForm
         title="edit card"
         onSubmit={onSubmit}

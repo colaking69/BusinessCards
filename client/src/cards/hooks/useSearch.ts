@@ -19,22 +19,26 @@ const useSearch = (whatHandle?: string) => {
     else handleGetCards();
   }, []);
 
-  useEffect(() => {
-    const filterCards = () => {
+  const filterCards = () => {
+    setFilteredCards((prevCards) => {
       if (cards === undefined) {
-        setFilteredCards(null);
-      } else if (searchQuery.trim() === "") {
-        setFilteredCards(cards);
-      } else {
-        const filtered = cards?.filter(
-          (card) =>
-            card.title &&
-            card.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        setFilteredCards(filtered || null);
+        return null;
       }
-    };
+      if (searchQuery.trim() === "") {
+        return cards;
+      }
+      if (prevCards === null) {
+        return null;
+      }
+      return prevCards.filter(
+        (card) =>
+          card.title &&
+          card.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    });
+  };
 
+  useEffect(() => {
     filterCards();
   }, [cards, searchQuery]);
 
@@ -48,6 +52,7 @@ const useSearch = (whatHandle?: string) => {
     setSearchQuery,
     filteredCards,
     setFilteredCards,
+    filterCards,
   };
 };
 

@@ -30,7 +30,8 @@ const CardDetailsPage = () => {
         <div>
           <Card
             card={card}
-            onDelete={id => console.log("you deleted card: " + id)}
+            onDelete={(id) => console.log("you deleted card: " + id)}
+            onLike={() => {}}
           />
         </div>
       </Container>

@@ -11,9 +11,10 @@ import CardInterface from "../../models/interfaces/CardInterface";
 type CardProps = {
   card: CardInterface;
   onDelete: (id: string) => void;
+  onLike: () => void;
 };
 
-const Card: React.FC<CardProps> = ({ card, onDelete }) => {
+const Card: React.FC<CardProps> = ({ card, onDelete, onLike }) => {
   const navigate = useNavigate();
 
   return (
@@ -30,6 +31,7 @@ const Card: React.FC<CardProps> = ({ card, onDelete }) => {
         cardId={card._id}
         cardUserId={card.user_id}
         onDelete={onDelete}
+        onLike={onLike}
       />
     </MuiCard>
   );

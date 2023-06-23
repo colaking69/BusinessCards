@@ -20,8 +20,6 @@ you can run:
 
 ### `npm start`
 
-5
-
 - It will run the app with node
 - The page will not reload if you make edits.
 - You must have a mongoDB Atlas Cluster
